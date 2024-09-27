@@ -7,7 +7,16 @@ let qrText = document.getElementById("qrText");
 let gnrtBtn = document.getElementById("gnrt-btn");
 
 function generateQR() {
-    qrImage.src = qrApiUrl + qrText.value;
+    if(qrText.value.length > 0) {
+        qrImage.src = qrApiUrl + qrText.value;
+        imgBox.classList.add("show-img");
+    } else {
+        qrText.classList.add("error");
+        setTimeout(()=>{
+            qrText.classList.remove("error");
+        },1000);
+    }
+    
 }
 
 gnrtBtn.addEventListener("click", generateQR);
